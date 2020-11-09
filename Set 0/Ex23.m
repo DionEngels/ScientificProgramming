@@ -1,0 +1,10 @@
+% Write a matrix to screen in LaTeX, Matlab and Mathematica format
+A = magic(8)
+xformlatex(A)
+xformlatex(A,'%3d')
+xformlatex(A,'%3d',[2, 1, 3, 2])
+xformmatlab(A)
+xformmatlab(A,'%3d')
+xformmatlab(A,'%3d',[2, 1, 3, 2])
+xformmathematica(A)
+xformmathematica(A,'%3d')
