@@ -10,23 +10,36 @@ File: Ex8
 """
 import numpy as np
 import given_material.mlext as me
+from given_material.mlext import print_matrix
 
-A = me.magic(8)
-print(f'Base matrix: {A}')
 
-A_a = A.copy()
-A_a[A_a < 32] = 0
-print(f'a) {A_a}')
+def ex8a(matrix, value):
+    matrix[matrix < value] = 0
+    return matrix
 
-print(f'b) {np.delete(A, 4, axis=0) }')
 
-print(f'c) {np.delete(A, -1, axis=1)}')
+def ex8bc(matrix, n_col_row, n_axis):
+    return np.delete(matrix, n_col_row, axis=n_axis)
+
+
+def ex8d(matrix, values):
+    matrix[values] = 0
+    return matrix
+
+
+def ex8e_1(size):
+    return np.diag(np.ones(size, dtype=int))
+
+
+size = 8
+A = me.magic(size)
+print_matrix('Base matrix:', A)
+print_matrix('Result a)', ex8a(A.copy(), 32))
+print_matrix('Result b)', ex8bc(A.copy(), 4, 0))
+print_matrix('Result c)', ex8bc(A.copy(), -1, 1))
 
 input_I = [3, 1, 3, 6]
 input_J = [1, 2, 7, 4]
-A_d = A.copy()
+print_matrix('Result d)', ex8d(A.copy(), (input_I, input_J)))
+print_matrix('Result e)', ex8e_1(size))
 
-A_d[(input_I, input_J)] = 0
-print(f'd) {A_d}')
-
-## E to do
