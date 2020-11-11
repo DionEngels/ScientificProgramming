@@ -9,9 +9,13 @@ Project: ScientificProgramming
 File: Ex3
 """
 import numpy as np
-v = np.zeros(6, dtype=np.uint32)
 
-v[[0, 2, 4, 2, 0]] = v[[0, 2, 4, 2, 0]] + 1
-print(f'Result given: {v}')
-v_manual = np.asarray([2, 0, 1, 0, 2, 0])
-print(f'Possible solution: {v_manual}')
+
+def ex3(array, indices):
+    array[indices] = array[indices] + 1
+    return array
+
+
+v = np.zeros(6, dtype=np.uint32)
+print(f'Result given \t\t: {ex3(v, [0, 2, 4, 2, 0])}')
+print(f'Possible solution \t: {np.asarray([2, 0, 1, 0, 2, 0])}')
