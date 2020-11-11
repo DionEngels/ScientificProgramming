@@ -24,7 +24,6 @@ def ex5a_opt(large, small):
 input_I = np.asarray([8, 6, 3, 6, 8, 9])
 input_J = [3, 8, 7]
 
-print(f'a) one-line: {ex5a_1(input_I, input_J)}')
-print(f'a) optimal: {ex5a_opt(input_I, input_J)}')
-
-print(f'b) one-line: {ex5a_1(input_I, input_J)}')
+print(f'a) one-line \t: {ex5a_1(input_I, input_J)}')
+print(f'a) optimal \t\t: {ex5a_opt(input_I, input_J)}')
+print(f'b) one-line \t: {ex5a_1(input_I, input_J)}')
