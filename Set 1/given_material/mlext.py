@@ -585,7 +585,7 @@ def sc_add(A, n):
     return [[x+n for x in row] for row in A]
 
 
-def print_matrix(matrix):
+def print_matrix(header, matrix):
     """
     Source: David Robinson from 
     http://stackoverflow.com/questions/8747500/pythons-pretty-printing-of-matrix
@@ -593,6 +593,7 @@ def print_matrix(matrix):
     max_lens = [max([len(str(r[i])) for r in matrix])
                 for i in range(len(matrix[0]))]
 
+    print(header)
     print("\n".join(["".join([str(e).rjust(l + 2) for e, l in zip(r, max_lens)]) for r in matrix]))
 
 

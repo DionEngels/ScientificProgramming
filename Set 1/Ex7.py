@@ -17,5 +17,4 @@ def ex7(size):
 
 
 n = 8
-print('Result 7:')
-print_matrix(ex7(n))
+print_matrix('Result Ex7:', ex7(n))
