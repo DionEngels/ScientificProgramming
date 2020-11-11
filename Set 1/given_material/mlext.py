@@ -593,8 +593,7 @@ def print_matrix(matrix):
     max_lens = [max([len(str(r[i])) for r in matrix])
                 for i in range(len(matrix[0]))]
 
-    print("\n").join(["".join([string.rjust(str(e), l + 2)
-                for e, l in zip(r, max_lens)]) for r in matrix])    
+    print("\n".join(["".join([str(e).rjust(l + 2) for e, l in zip(r, max_lens)]) for r in matrix]))
 
 
 def demo(A):

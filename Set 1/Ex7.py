@@ -9,6 +9,13 @@ Project: ScientificProgramming
 File: Ex7
 """
 import numpy as np
-n = 8
+from given_material.mlext import print_matrix
 
-res = np.reshape(np.tile(np.array(range(1, n + 1)), n), (n, n))
+
+def ex7(size):
+    return np.reshape(np.tile(np.array(range(1, size + 1)), size), (size, size))
+
+
+n = 8
+print('Result 7:')
+print_matrix(ex7(n))
