@@ -48,14 +48,14 @@ def accumarray(inds,val,sz=None,fun=np.add,fillval=0):
     """
     
     if fun is np.add:
-        if inds.ndim != 1 or not (val.shape == inds.shape or val.ndim == 0):
-            raise NotImplementedError()
         if np.isscalar(val):
             r = np.bincount(inds,minlength=sz)
             if val != 1:
                 r *= val
             if fillval != 0:
                 r[r==0] = fillval
+        elif inds.ndim != 1 or not (val.shape == inds.shape or val.ndim == 0):
+            raise NotImplementedError()
         else:
             r = np.bincount(inds,weights=val,minlength=sz)
             if fillval != 0:
