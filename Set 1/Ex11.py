@@ -14,8 +14,9 @@ from given_material.mlext import print_matrix
 
 
 def ex11(matrix):
+    matrix = matrix.tocoo()
     booleans = [True if value > 0 and column == row or value < 0 and column != row else False
-                for value, column, row in zip(A.data, A.col, A.row)]
+                for value, column, row in zip(matrix.data, matrix.col, matrix.row)]
     return all(booleans)
 
 
@@ -26,4 +27,23 @@ d = 1
 A = sparse.rand(n, n, d, format='coo')
 A.data = (A.data - 0.5) * 100
 A = A.astype(np.int)
-ex11(A)
+print(f'Result self-made: {ex11(A)}')
+
+#%%
+A = sparse.csc_matrix([
+[1, 0, -2],
+[0, 4, 0],
+[-9, -2, 6]
+])
+
+print(f'Result B: {ex11(A)}')
+
+#%%
+A = sparse.csc_matrix([
+[-2, -6, 0, 1],
+[5, 11, -8, -9],
+[0, 20, 22, -4],
+[3, 2, 1, -7],
+])
+
+print(f'Result C: {ex11(A)}')
