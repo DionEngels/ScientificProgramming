@@ -9,27 +9,22 @@ Project: ScientificProgramming
 File: Ex2
 """
 import numpy as np
+from given_material.mlext import accumarray
 
 
-def ex2a_single(max_value, array):
-    return [list(array).count(value) for value in range(1, max_value)]
+def ex2a(max_value, array):
+    uniques = np.unique(array, return_counts=True)
+    return accumarray(uniques[0] - 1, uniques[1], sz=max_value, fillval=0).astype(int)
 
 
-def ex2a_self(max_value, array):
-    result = np.zeros(max_value, dtype=int)
-    for value in array:
-        result[value] += 1
-    return result[1:]
-
-
-def ex2b_single(max_value, array):
-    return [list(array).index(value) if value in array else -1 for value in range(1, max_value)]
+def ex2b(max_value, array):
+    uniques = np.unique(array, return_index=True)
+    return accumarray(uniques[0] - 1, uniques[1] + 1, sz=max_value, fillval=0).astype(int)
 
 
 k = 10
 n = 7
 
 v = np.random.randint(low=1, high=k, size=n)
-print(f'Result 2a single line \t: {ex2a_single(k, v)}')
-print(f'Result 2a self \t\t\t: {ex2a_self(k, v)}')
-print(f'Result 2b \t\t\t\t: {ex2b_single(k, v)}')
+print(f'Result 2a \t: {ex2a(k, v)}')
+print(f'Result 2b \t: {ex2b(k, v)}')
