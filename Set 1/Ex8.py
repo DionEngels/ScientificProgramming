@@ -28,7 +28,7 @@ def ex8d(matrix, values):
 
 
 def ex8e_1(size):
-    return np.diag(np.ones(size, dtype=int))
+    return np.diag(np.arange(1, size+1, dtype=int))
 
 
 size = 8
