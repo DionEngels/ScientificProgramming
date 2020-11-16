@@ -31,6 +31,12 @@ def ex8e_1(size):
     return np.diag(np.arange(1, size+1, dtype=int))
 
 
+def ex8e_3(size):
+    matrix = np.zeros(size * size, dtype=np.int)
+    matrix[np.array(range(0, size)) * size + np.array(range(0, size))] = range(1, size + 1)
+    return np.reshape(matrix, (size, size))
+
+
 size = 8
 A = me.magic(size)
 print_matrix('Base matrix:', A)
@@ -42,4 +48,4 @@ input_I = [3, 1, 3, 6]
 input_J = [1, 2, 7, 4]
 print_matrix('Result d)', ex8d(A.copy(), (input_I, input_J)))
 print_matrix('Result e)', ex8e_1(size))
-
+print_matrix('Result e)', ex8e_3(size))
