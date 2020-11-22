@@ -47,12 +47,19 @@ def ex9c(rows, columns, size):
     return sparse.coo_matrix((values, (rows, columns)), shape=(size, size))
 
 
-def ex9d(values, rows, columns, size):
-    indices = [np.where(columns == column)[0] for column in range(size)]
-    return [rows[indice[np.argmax(values[indice])]] + 1 if len(indice) > 0 else 0 for indice in indices]
+def ex9d(matrix):
+    argmax = matrix.argmax(0)
+    max_value = matrix.max(0)
+    argmax[max_value != 0] += 1  # compensate for MATLAB vs Python indexing
+    return argmax
 
 
 print_matrix('Exercise 9a)', ex9a(I.copy(), J.copy(), n).todense())
 print_matrix('Exercise 9b)', ex9b(A.copy(), 2))
 print_matrix('Exercise 9c)', ex9c(I.copy(), J.copy(), n).todense())
-print(f'Exercise 9d) {ex9d(V.copy(), I, J, n)}')
+
+A_d = np.asarray([[0, 1, 0, 2, 0, 9, -3, 8, 0, -9], [3, 0, 0, 0, 0, 0, 0, 0, 0, 4], [0, 7, 0, 8, 0, 0, 0, 0, 0, -4],
+                  [-8, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, -1, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, -2, 0, -9, 0, 0, 0],
+                  [0, 0, 0, -3, 0, 0, -9, 0, 0, 0] ,[0, 0, -8, -2, 2, 0, 0, -8, 0, 0],
+                  [0, 0, -8, 0, 0, 7, -8, -9, 0, 0], [-8, 0, 8, 0, 0, 0, -1, 0, 0, 0]])
+print(f'Exercise 9d) {ex9d(A_d.copy())}')
