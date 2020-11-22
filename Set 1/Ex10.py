@@ -12,19 +12,17 @@ import numpy as np
 from given_material.mlext import accumarray
 
 
-def ex10_long(N):
-    res = []
-    for i in range(1, 5):
-        counts = accumarray(N[N[:,1]==i, :][:,0], 1)
-        if len(counts) > 0:
-            res.append(np.asarray([[np.argmax(counts), i],]*np.max(counts)))
-    return np.vstack(tuple(res))
-
+def ex10_v2(N):
+    ones = (N == (np.max(N[N[:, 1] == 1, 0]), 1)).all(axis=1)
+    twos = (N == (np.max(N[N[:, 1] == 2, 0]), 2)).all(axis=1)
+    threes = (N == (np.max(N[N[:, 1] == 3, 0]), 3)).all(axis=1)
+    fours = (N == (np.max(N[N[:, 1] == 4, 0]), 4)).all(axis=1)
+    return N[ones | twos | threes | fours, :]
 
 # define
-n = 100
+n = 14
 ranks = np.random.randint(low=1, high=14, size=n)
 suites = np.random.randint(low=1, high=5, size=n)
 N = np.transpose(np.vstack((ranks, suites)))
-print(ex10_long(N))
+print(ex10_v2(N))
 
